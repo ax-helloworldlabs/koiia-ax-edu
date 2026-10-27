@@ -4,6 +4,33 @@
 <meta charset="utf-8">
 <meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-73LEW05GGH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-73LEW05GGH');
+</script>
+<script>
+  // 버튼 클릭 이벤트: 교육 신청 문의 / 교육 자료 요청 / 상세보기
+  (function(){
+    var COURSE = (location.pathname.match(/courses\/([\w-]+)\.html/) || [])[1] || 'main';
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a) return;
+      var href = a.href || '', name = null, p = {course: COURSE, link_text: (a.textContent || '').trim().slice(0, 40), link_url: href};
+      if (href.indexOf('forms.gle/NGkZhTFxfAryvY218') > -1) name = 'request_material';
+      else if (/forms\.gle\/|docs\.google\.com\/forms\//.test(href)) name = 'apply_inquiry';
+      else if (/courses\/[\w-]+\.html/.test(href) && COURSE === 'main') { name = 'view_course'; p.course = href.match(/courses\/([\w-]+)\.html/)[1]; }
+      if (!name) return;
+      p.button_position = a.closest('.kg-bar') ? 'bottom_bar' : 'body';
+      gtag('event', name, p);
+    }, true);
+  })();
+</script>
+
 <title>코딩 없이 Claude Cowork로 만드는 우리 회사 업무 비서 · 헬로월드랩스</title>
 <meta name="description" content="오프라인 주 1회 8시간 × 3주 = 24시간. 노코딩으로 Claude Cowork 업무지원 에이전트를 만드는 기업교육. 교육비 90% 환급, Claude 1개월 이용 제공.">
 <style>
